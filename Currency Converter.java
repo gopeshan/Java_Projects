@@ -5,29 +5,25 @@ import java.util.HashMap;
 
 public class Currency {
 
-    private String name;
+    public enum CurrencyName {
+        US_DOLLAR, EURO, BRITISH_POUND, SWISS_FRANC, CHINESE_YUAN, JAPANESE_YEN
+    }
+
+    private CurrencyName name;
     private String shortName;
     private HashMap<String, Double> exchangeRates = new HashMap<>();
 
-    public Currency(String name, String shortName) {
+    public Currency(CurrencyName name, String shortName) {
         this.name = name;
         this.shortName = shortName;
     }
 
-    public String getName() {
+    public CurrencyName getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getShortName() {
         return shortName;
-    }
-
-    public void setShortName(String shortName) {
-        this.shortName = shortName;
     }
 
     public HashMap<String, Double> getExchangeRates() {
@@ -40,13 +36,13 @@ public class Currency {
 
     public void setDefaultExchangeRates() {
         switch (name) {
-            case "US Dollar":
-                setExchangeRates("USD", 1.00);
-                setExchangeRates("EUR", 0.93);
-                setExchangeRates("GBP", 0.66);
-                setExchangeRates("CHF", 1.01);
-                setExchangeRates("CNY", 6.36);
-                setExchangeRates("JPY", 123.54);
+            case US_DOLLAR:
+                setExchangeRate("USD", 1.00);
+                setExchangeRate("EUR", 0.93);
+                setExchangeRate("GBP", 0.66);
+                setExchangeRate("CHF", 1.01);
+                setExchangeRate("CNY", 6.36);
+                setExchangeRate("JPY", 123.54);
                 break;
             // Repeat for other currencies
         }
@@ -54,8 +50,8 @@ public class Currency {
 
     public static ArrayList<Currency> initializeCurrencies() {
         ArrayList<Currency> currencies = new ArrayList<>();
-        currencies.add(new Currency("US Dollar", "USD"));
-        currencies.add(new Currency("Euro", "EUR"));
+        currencies.add(new Currency(CurrencyName.US_DOLLAR, "USD"));
+        currencies.add(new Currency(CurrencyName.EURO, "EUR"));
         // Add other currencies
 
         for (Currency currency : currencies) {
@@ -66,8 +62,6 @@ public class Currency {
     }
 
     public static Double convertCurrency(Double amount, Double exchangeRate) {
-        Double convertedAmount = amount * exchangeRate;
-        return Math.round(convertedAmount * 100d) / 100d;
+        return Math.round(amount * exchangeRate * 100d) / 100d;
     }
 }
-
