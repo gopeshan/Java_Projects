@@ -5,20 +5,16 @@ import java.util.HashMap;
 
 public class Currency {
 
-    public enum CurrencyName {
-        US_DOLLAR, EURO, BRITISH_POUND, SWISS_FRANC, CHINESE_YUAN, JAPANESE_YEN
-    }
-
-    private CurrencyName name;
+    private String name;
     private String shortName;
     private HashMap<String, Double> exchangeRates = new HashMap<>();
 
-    public Currency(CurrencyName name, String shortName) {
+    public Currency(String name, String shortName) {
         this.name = name;
         this.shortName = shortName;
     }
 
-    public CurrencyName getName() {
+    public String getName() {
         return name;
     }
 
@@ -36,7 +32,7 @@ public class Currency {
 
     public void setDefaultExchangeRates() {
         switch (name) {
-            case US_DOLLAR:
+            case "US Dollar":
                 setExchangeRate("USD", 1.00);
                 setExchangeRate("EUR", 0.93);
                 setExchangeRate("GBP", 0.66);
@@ -49,16 +45,11 @@ public class Currency {
     }
 
     public static ArrayList<Currency> initializeCurrencies() {
-        ArrayList<Currency> currencies = new ArrayList<>();
-        currencies.add(new Currency(CurrencyName.US_DOLLAR, "USD"));
-        currencies.add(new Currency(CurrencyName.EURO, "EUR"));
-        // Add other currencies
-
-        for (Currency currency : currencies) {
-            currency.setDefaultExchangeRates();
-        }
-
-        return currencies;
+        return new ArrayList<>(CurrencyName.getAllCurrencyNames()
+                .stream()
+                .map(name -> new Currency(name, CurrencyCode.getCodeForName(name)))
+                .peek(Currency::setDefaultExchangeRates)
+                .collect(Collectors.toList()));
     }
 
     public static Double convertCurrency(Double amount, Double exchangeRate) {
