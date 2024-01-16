@@ -9,6 +9,11 @@ public class CityTimeInfo {
         System.out.print("Enter the name of the city: ");
         String userCityInput = inputScanner.nextLine();
 
+        LocalDateTime currentTimeInCity = LocalDateTime.now(ZoneId.of(userCityInput));
+
+        System.out.println("Current time in " + userCityInput + ": " + currentTimeInCity);
+
+        inputScanner.close();
       
     }
 }
