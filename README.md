@@ -1,8 +1,7 @@
 This repository includes multiple python projects.
 
 Finished:
-Currency Converter
+Currency Converter, Current Time
 
 Working On:
-
-Current Time
+Task Manager
