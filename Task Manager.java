@@ -10,6 +10,17 @@ class Task {
         this.isCompleted = false;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public boolean isCompleted() {
+        return isCompleted;
+    }
+
+    public void markCompleted() {
+        isCompleted = true;
+    }
 }
 
 class TaskManager {
@@ -47,4 +58,8 @@ public void markTaskCompleted(int index) {
         return index >= 0 && index < tasks.size();
     }
     
+}
+
+public class TaskManagerApp {
+
 }
