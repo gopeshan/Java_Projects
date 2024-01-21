@@ -24,6 +24,27 @@ class TaskManager {
         tasks.add(newTask);
         System.out.println("New task added: \"" + description + "\"");
     }
+public void markTaskCompleted(int index) {
+        if (isValidIndex(index)) {
+            Task task = tasks.get(index);
+            task.markCompleted();
+            System.out.println("Task marked as completed: \"" + task.getDescription() + "\"");
+        } else {
+            System.out.println("Invalid task index. Please choose a valid task.");
+        }
+    }
 
+    public void displayTasks() {
+        System.out.println("Task List:");
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
+            System.out.println((i + 1) + ". " + task.getDescription() +
+                    (task.isCompleted() ? " - Completed" : ""));
+        }
+    }
+
+    private boolean isValidIndex(int index) {
+        return index >= 0 && index < tasks.size();
+    }
     
 }
