@@ -61,5 +61,15 @@ public void markTaskCompleted(int index) {
 }
 
 public class TaskManagerApp {
+    public static void main(String[] args) {
+        TaskManager taskManager = new TaskManager();
+        Scanner scanner = new Scanner(System.in);
 
+        while (true) {
+            System.out.println("\n1. Add New Task\n2. Mark Task as Done\n3. Display Tasks\n4. Exit");
+            System.out.print("Choose an option: ");
+
+            
+        }
+    }
 }
