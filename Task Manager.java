@@ -68,7 +68,14 @@ public class TaskManagerApp {
         while (true) {
             System.out.println("\n1. Add New Task\n2. Mark Task as Done\n3. Display Tasks\n4. Exit");
             System.out.print("Choose an option: ");
+            
+            int choice = scanner.nextInt();
+            scanner.nextLine();
 
+            switch (choice) {
+                
+                    
+            }
             
         }
     }
