@@ -72,8 +72,30 @@ public class TaskManagerApp {
             int choice = scanner.nextInt();
             scanner.nextLine();
 
-            switch (choice) {
-                
+        switch (choice) {
+                case 1:
+                    System.out.print("Enter task description: ");
+                    String description = scanner.nextLine();
+                    taskManager.addTask(description);
+                    break;
+
+                case 2:
+                    System.out.print("Enter the index of the task to mark as done: ");
+                    int index = scanner.nextInt();
+                    taskManager.markTaskCompleted(index - 1); // Adjust index for user input
+                    break;
+
+                case 3:
+                    taskManager.displayTasks();
+                    break;
+
+                case 4:
+                    System.out.println("Exiting the Task Manager. Goodbye!");
+                    System.exit(0);
+
+                default:
+                    System.out.println("Invalid choice. Please choose a valid option.");
+            }
                     
             }
             
